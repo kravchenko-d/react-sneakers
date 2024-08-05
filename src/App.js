@@ -2,6 +2,13 @@ import Card from "./components/Card";
 import Drawer from "./components/Drawer";
 import Header from "./components/Header";
 
+const arr = [
+  {name: 'Мужские Кроссовки Nike Blazer Mid Suede', price: 12999, imageUrl: '/img/sneakers/1.jpg'},
+  {name: 'Мужские Кроссовки Nike Air Max 270', price: 15499, imageUrl: '/img/sneakers/2.jpg'},
+  {name: 'Мужские Кроссовки Nike Blazer Mid Suede', price: 8499, imageUrl: '/img/sneakers/3.jpg'},
+  {name: 'Кроссовки Puma X Aka Boku Future Rider', price: 8999, imageUrl: '/img/sneakers/4.jpg'},
+];
+
 function App() {
   return (
     <div className="wrapper clear">
@@ -19,46 +26,11 @@ function App() {
         </div>
 
         <div>
-          <Card />
-          <div className="card">
-            <img width={133} height={112} src="/img/sneakers/2.jpg" alt="Sneakers"/>
-            <h5>Мужские Кроссовки Nike Air Max 270</h5>
-            <div>
-              <div>
-                <span>Цена: </span>
-                <b>12 999 руб.</b>
-              </div>
-              <button>
-                <img width={11} height={11} src="/img/plus.svg" alt="Plus"/>
-              </button>
-            </div>
-          </div>
-          <div className="card">
-            <img width={133} height={112} src="/img/sneakers/3.jpg" alt="Sneakers"/>
-            <h5>Мужские Кроссовки Nike Blazer Mid Suede</h5>
-            <div>
-              <div>
-                <span>Цена: </span>
-                <b>8 499 руб.</b>
-              </div>
-              <button>
-                <img width={11} height={11} src="/img/plus.svg" alt="Plus"/>
-              </button>
-            </div>
-          </div>
-          <div className="card">
-            <img width={133} height={112} src="/img/sneakers/4.jpg" alt="Sneakers"/>
-            <h5>Кроссовки Puma X Aka Boku Future Rider</h5>
-            <div>
-              <div>
-                <span>Цена: </span>
-                <b>8 999 руб.</b>
-              </div>
-              <button>
-                <img width={11} height={11} src="/img/plus.svg" alt="Plus"/>
-              </button>
-            </div>
-          </div>
+          {arr.map(obj => <Card 
+            name={obj.name}
+            price={obj.price}
+            imageUrl={obj.imageUrl}
+          />)}
         </div>
       </div>
     </div>
