@@ -1,34 +1,24 @@
-const Drawer = () => {
+const Drawer = ({ onClose, items = [] }) => {
     return (
-        <div style={{display: 'none'}} className="overlay">
+        <div className="overlay">
             <aside style={{padding: '30px', display: 'flex', flexDirection: 'column'}}>
                 <h2 style={{margin: '0', display: 'flex', justifyContent: 'space-between'}}>Корзина
-                    <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" style={{cursor: 'pointer'}}/>
+                    <img className="removeBtn" src="/img/btn-remove.svg" alt="Close" onClick={onClose} style={{cursor: 'pointer'}}/>
                 </h2>
 
                 <div className="items" style={{flex: '1', overflow: 'auto'}}>
-
-                    <div className="cartItem" style={{display: 'flex', alignItems: 'center', fontSize: '16px', padding: '20px'}}>
-                    <div className="cartItemImg">
-                        <img width={70} height={70} src="/img/sneakers/1.jpg" alt="Sneakers" style={{marginRight: '20px'}} />
-                    </div>
-                    <div style={{marginRight: '20px'}}>
-                        <p style={{margin: '0'}}>Мужские Кроссовки Nike Air Max 270</p>
-                        <b style={{fontSize: '14px'}}>12 999 руб.</b>
-                    </div>
-                    <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove"/>
-                    </div>
-
-                    <div className="cartItem" style={{display: 'flex', alignItems: 'center', fontSize: '16px', padding: '20px'}}>
-                    <div className="cartItemImg">
-                        <img width={70} height={70} src="/img/sneakers/1.jpg" alt="Sneakers" style={{marginRight: '20px'}} />
-                    </div>           
-                    <div style={{marginRight: '20px'}}>
-                        <p style={{margin: '0'}}>Мужские Кроссовки Nike Air Max 270</p>
-                        <b style={{fontSize: '14px'}}>12 999 руб.</b>
-                    </div>              
-                    <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove"/>
-                    </div>
+                    {items.map((obj) => (
+                        <div className="cartItem" style={{display: 'flex', alignItems: 'center', fontSize: '16px', padding: '20px'}}>
+                            <div className="cartItemImg">
+                                <img width={70} height={70} src={obj.imageUrl} alt="Sneakers" style={{marginRight: '20px'}} />
+                            </div>
+                            <div style={{marginRight: '20px'}}>
+                                <p style={{margin: '0'}}>{obj.name}</p>
+                                <b style={{fontSize: '14px'}}>{obj.price} руб.</b>
+                            </div>
+                            <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove"/>
+                       </div>                        
+                    ))}
                     
                 </div>
                 <div className="cartTotalBlock">

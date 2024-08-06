@@ -1,4 +1,4 @@
-const Header = () =>  {
+const Header = (props) =>  {
     return(
         <header>
 
@@ -15,7 +15,7 @@ const Header = () =>  {
 
             <ul>
 
-                <li>
+                <li onClick={props.onClickCart} style={{cursor: 'pointer'}}>
                     <img width={18} height={18} src="/img/cart.svg" alt="Cart" style={{marginRight:'20px'}}/>
                     <span>1205 руб.</span>
                 </li>
