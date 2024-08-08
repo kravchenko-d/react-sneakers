@@ -1,7 +1,10 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
-import Card from "./components/Card";
+import { Route, Routes } from 'react-router-dom';
 import Drawer from "./components/Drawer";
 import Header from "./components/Header";
+import Home from "./pages/Home";
+import Favorites from "./pages/Favorites";
 
 // const arr = [
 //   {name: 'Мужские Кроссовки Nike Blazer Mid Suede', price: 12999, imageUrl: '/img/sneakers/1.jpg'},
@@ -22,45 +25,71 @@ function App() {
 
   const [items, setItems] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
   const [cartOpened, setCartOpened] = useState(false);
 
+  const onChangeSearchInput = (event) => {
+    setSearchValue(event.target.value);
+  }
+
   useEffect(() => {
-    fetch('https://66b232d61ca8ad33d4f6ec4b.mockapi.io/items').then(res => {
-      return res.json();
-    }).then((json) => {
-      setItems(json);
+    // fetch('https://66b232d61ca8ad33d4f6ec4b.mockapi.io/items').then(res => {
+    //   return res.json();
+    // }).then((json) => {
+    //   setItems(json);
+    // });
+
+    axios.get('https://66b232d61ca8ad33d4f6ec4b.mockapi.io/items').then(res => {
+      setItems(res.data);
+    });
+    axios.get('https://66b232d61ca8ad33d4f6ec4b.mockapi.io/cart').then(res => {
+      setCartItems(res.data);
     });
   }, []);
 
   const onAddToCart = (obj) => {
-    setCartItems(prev => [...prev, obj])
+    axios.post('https://66b232d61ca8ad33d4f6ec4b.mockapi.io/cart', obj);
+    setCartItems(prev => [...prev, obj]);
   };
 
-  console.log(cartItems);
+  const onAddToFavorite = (obj) => {    
+    setFavorites(prev => [...prev, obj]);
+  };
+
+  const onRemoveItem = (id) => {
+    axios.delete(`https://66b232d61ca8ad33d4f6ec4b.mockapi.io/cart/${id}`);
+    setCartItems(prev => prev.filter(item => item.id !== id));
+  }
 
   return (
     <div className="wrapper clear">
-      {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} />}
+      {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} />}
 
-      <Header onClickCart={() => setCartOpened(true)} />
-      <div className="content">
-        <div style={{display: 'flex', alignItems: 'center', marginBottom:'40px', justifyContent: 'space-between'}}>
-          <h1>Все кроссовки</h1>
-          <div className="search-block" style={{display: 'flex', borderRadius: '10px'}}>
-            <img src="/img/search.svg" alt="Search" style={{padding: '0 15px'}} />
-            <input placeholder="Поиск..." style={{border: '0', padding: '12px', fontSize: '16px', width: '200px'}}/>
-          </div>
-        </div>
+      <Header onClickCart={() => setCartOpened(true)} cartItems={cartItems} />
 
-        <div>
-          {items.map(item => <Card 
-            name={item.name}
-            price={item.price}
-            imageUrl={item.imageUrl}
-            onPlus={(obj) => onAddToCart(obj)}
-          />)}
-        </div>
-      </div>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              items={items}
+              searchValue={searchValue}
+              setSearchValue={setSearchValue}
+              onChangeSearchInput={onChangeSearchInput}
+              onAddToFavorite={onAddToFavorite}
+              onAddToCart={onAddToCart}
+            />
+          }
+        />
+        <Route path="/favorites"
+          element={<Favorites
+            items={favorites}
+            onAddToFavorite={onAddToFavorite}
+          />}
+        />
+      </Routes>
+
     </div>
   );
 }
