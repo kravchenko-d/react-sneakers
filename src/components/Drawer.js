@@ -11,7 +11,7 @@ const Drawer = ({ onClose, onRemove, items = [] }) => {
                     <>
                         <div className="items" style={{flex: '1', overflow: 'auto'}}>
                         {items.map((obj) => (
-                            <div className="cartItem" style={{display: 'flex', alignItems: 'center', fontSize: '16px', padding: '20px'}}>
+                            <div key={obj.id} className="cartItem" style={{display: 'flex', alignItems: 'center', fontSize: '16px', padding: '20px'}}>
                                 <div className="cartItemImg">
                                     <img width={70} height={70} src={obj.imageUrl} alt="Sneakers" style={{marginRight: '20px'}} />
                                 </div>
@@ -19,7 +19,7 @@ const Drawer = ({ onClose, onRemove, items = [] }) => {
                                     <p style={{margin: '0'}}>{obj.name}</p>
                                     <b style={{fontSize: '14px'}}>{obj.price} руб.</b>
                                 </div>
-                                <img onClick={() => onRemove(obj.id)} className="removeBtn" src="/img/btn-remove.svg" alt="Remove"/>
+                                <img onClick={() => onRemove(obj)} className="removeBtn" src="/img/btn-remove.svg" alt="Remove"/>
                         </div>
                         ))}
                         </div>

@@ -3,6 +3,7 @@ import { CgClose } from "react-icons/cg";
 
 const Home = ({
     items,
+    cartItems,
     searchValue,
     setSearchValue,
     onChangeSearchInput,
@@ -23,14 +24,15 @@ const Home = ({
             <div>
                 {items
                 .filter(item => item.name.toLowerCase().includes(searchValue))
-                .map((item, id) =>
+                .map((item, index) =>
                 <Card
-                    key={id}
+                    key={index}
                     // name={item.name}
                     // price={item.price}
                     // imageUrl={item.imageUrl}
                     onFavorite={(obj) => onAddToFavorite(obj)}
                     onPlus={(obj) => onAddToCart(obj)}
+                    added={cartItems.some(obj => Number(obj.id) === Number(item.id))}
                     {...item}
                 />)}
             </div>
