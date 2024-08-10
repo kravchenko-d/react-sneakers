@@ -4,6 +4,7 @@ import { CgClose } from "react-icons/cg";
 const Home = ({
     items,
     cartItems,
+    favorites,
     searchValue,
     setSearchValue,
     onChangeSearchInput,
@@ -23,6 +24,7 @@ const Home = ({
                 onFavorite={(obj) => onAddToFavorite(obj)}
                 onPlus={(obj) => onAddToCart(obj)}
                 added={cartItems.some(obj => Number(obj.id) === Number(item.id))}
+                favorited={favorites.some(obj => Number(obj.id) === Number(item.id))}
                 loading={isLoading}
                 {...item}
             />

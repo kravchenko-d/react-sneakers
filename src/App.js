@@ -64,7 +64,6 @@ function App() {
     if (cartItem) {
       axios.delete(`https://66b232d61ca8ad33d4f6ec4b.mockapi.io/cart/${cartItem.cart_id}`);
       setCartItems(prev => prev.filter(item => Number(item.id) !== Number(obj.id)));
-      console.log(cartItems)
     } else {
       await axios.post('https://66b232d61ca8ad33d4f6ec4b.mockapi.io/cart', obj);
       await axios.get('https://66b232d61ca8ad33d4f6ec4b.mockapi.io/cart').then(res => {
@@ -75,7 +74,11 @@ function App() {
   };
 
   const onAddToFavorite = (obj) => {
-    setFavorites(prev => [...prev, obj]);
+    if (favorites.find((item) => Number(item.id) === Number(obj.id))) {
+      setFavorites(prev => prev.filter(item => Number(item.id) !== Number(obj.id)));
+    } else {
+      setFavorites(prev => [...prev, obj]);
+    }    
   };
 
   // const onRemoveItem = (id) => {
@@ -103,6 +106,7 @@ function App() {
               <Home
                 items={items}
                 cartItems={cartItems}
+                favorites={favorites}
                 searchValue={searchValue}
                 setSearchValue={setSearchValue}
                 onChangeSearchInput={onChangeSearchInput}
