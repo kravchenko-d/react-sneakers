@@ -1,9 +1,11 @@
+// import { useContext } from "react";
 import Card from "../components/Card";
 import { CgClose } from "react-icons/cg";
 
+
 const Home = ({
     items,
-    cartItems,
+    // cartItems,
     favorites,
     searchValue,
     setSearchValue,
@@ -12,9 +14,12 @@ const Home = ({
     onAddToCart,
     isLoading
 }) => {
+    
+
     const renderItems = () => {
-        const filteredItems = items && items.filter(item =>
-            item.name.toLowerCase().includes(searchValue.toLowerCase()))
+        const filteredItems = items.filter(item =>
+            item.name.toLowerCase().includes(searchValue.toLowerCase())
+        );
         return (isLoading ? [...Array(12)] : filteredItems).map((item, index) => (
             <Card
                 key={index}
@@ -23,7 +28,7 @@ const Home = ({
                 // imageUrl={item.imageUrl}
                 onFavorite={(obj) => onAddToFavorite(obj)}
                 onPlus={(obj) => onAddToCart(obj)}
-                added={cartItems.some(obj => Number(obj.id) === Number(item.id))}
+                // added={isItemAdded(item && item.id)} // добавлен 'item &&' т.к. при загрузке сначала появляется пустой массив, у которого нет данных, поэтому id - undefined
                 favorited={favorites.some(obj => Number(obj.id) === Number(item.id))}
                 loading={isLoading}
                 {...item}

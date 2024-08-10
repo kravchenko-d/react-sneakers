@@ -1,8 +1,8 @@
-import { useContext } from "react";
 import Card from "../components/Card"
 import { AppContext } from "../App";
+import { useContext } from "react";
 
-const Favorites = ( { onAddToFavorite } ) => {
+const Favorites = ( { onAddToFavorite, onAddToCart } ) => {
     const state = useContext(AppContext);
 
     return (
@@ -17,6 +17,7 @@ const Favorites = ( { onAddToFavorite } ) => {
                         key={index}
                         favorited={true}
                         onFavorite={onAddToFavorite}
+                        onPlus={onAddToCart}
                         {...item}
                     />)}
                 </div>

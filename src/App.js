@@ -47,6 +47,7 @@ function App() {
       const itemsResponse = await axios.get('https://66b232d61ca8ad33d4f6ec4b.mockapi.io/items');
 
       setIsLoading(false);
+
       setCartItems(cartResponse.data);
       setItems(itemsResponse.data);
     }
@@ -92,8 +93,12 @@ function App() {
     setCartItems(prev => prev.filter(item => Number(item.id) !== Number(obj.id)));
   }
 
+  const isItemAdded = (id) => {
+    return cartItems.some(obj => Number(obj.id) === Number(id));
+  };
+
   return (
-    <AppContext.Provider value={{ cartItems, favorites, items }}>
+    <AppContext.Provider value={{ cartItems, favorites, items, isItemAdded }}>
     <div className="wrapper clear">
       {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} />}
 
@@ -120,6 +125,7 @@ function App() {
             element={<Favorites
               // items={favorites} не нужно, т.к. есть контекст
               onAddToFavorite={onAddToFavorite}
+              onAddToCart={onAddToCart}
             />}
           />
         </Routes>
