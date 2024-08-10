@@ -61,6 +61,6 @@ const Card = ({ id,
         }    
     </div>
     );
-}
+};
 
 export default Card;

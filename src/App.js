@@ -34,7 +34,7 @@ function App() {
 
   const onChangeSearchInput = (event) => {
     setSearchValue(event.target.value);
-  }
+  };
 
   useEffect(() => {
     // fetch('https://66b232d61ca8ad33d4f6ec4b.mockapi.io/items').then(res => {
@@ -43,28 +43,36 @@ function App() {
     //   setItems(json);
     // });
     async function fetchData() {
-      const cartResponse = await axios.get('https://66b232d61ca8ad33d4f6ec4b.mockapi.io/cart');
+      // const cartResponse = await axios.get('https://66b232d61ca8ad33d4f6ec4b.mockapi.io/cart');
       const itemsResponse = await axios.get('https://66b232d61ca8ad33d4f6ec4b.mockapi.io/items');
 
       setIsLoading(false);
 
-      setCartItems(cartResponse.data);
+      // setCartItems(cartResponse.data);
       setItems(itemsResponse.data);
     }
     fetchData();
   }, []);
 
-  async function onAddToCart(obj) {
-    const cartItem = cartItems.find((item) => Number(item.id) === Number(obj.id))
-    if (cartItem) {
-      axios.delete(`https://66b232d61ca8ad33d4f6ec4b.mockapi.io/cart/${cartItem.cart_id}`);
+  // async function onAddToCart(obj) {
+  //   const cartItem = cartItems.find((item) => Number(item.id) === Number(obj.id));
+  //   if (cartItem) {
+  //     axios.delete(`https://66b232d61ca8ad33d4f6ec4b.mockapi.io/cart/${cartItem.cart_id}`);
+  //     setCartItems(prev => prev.filter(item => Number(item.id) !== Number(obj.id)));
+  //   } else {
+  //     await axios.post('https://66b232d61ca8ad33d4f6ec4b.mockapi.io/cart', obj);
+  //     await axios.get('https://66b232d61ca8ad33d4f6ec4b.mockapi.io/cart').then(res => {
+  //     setCartItems(res.data);
+  //     });
+  //   };
+  // };
+
+  const onAddToCart = (obj) => {
+    if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
       setCartItems(prev => prev.filter(item => Number(item.id) !== Number(obj.id)));
     } else {
-      await axios.post('https://66b232d61ca8ad33d4f6ec4b.mockapi.io/cart', obj);
-      await axios.get('https://66b232d61ca8ad33d4f6ec4b.mockapi.io/cart').then(res => {
-      setCartItems(res.data);
-      });
-    }
+      setCartItems(prev => [...prev, obj]);
+    };
   };
 
   const onAddToFavorite = (obj) => {
@@ -72,21 +80,21 @@ function App() {
       setFavorites(prev => prev.filter(item => Number(item.id) !== Number(obj.id)));
     } else {
       setFavorites(prev => [...prev, obj]);
-    }    
+    };
   };
 
   const onRemoveItem = (obj) => {
-    const cartItem = cartItems.find((item) => Number(item.id) === Number(obj.id))
-    axios.delete(`https://66b232d61ca8ad33d4f6ec4b.mockapi.io/cart/${cartItem.cart_id}`);
+    // const cartItem = cartItems.find((item) => Number(item.id) === Number(obj.id))
+    // axios.delete(`https://66b232d61ca8ad33d4f6ec4b.mockapi.io/cart/${cartItem.cart_id}`);
     setCartItems(prev => prev.filter(item => Number(item.id) !== Number(obj.id)));
-  }
+  };
 
   const isItemAdded = (id) => {
     return cartItems.some(obj => Number(obj.id) === Number(id));
   };
 
   return (
-    <AppContext.Provider value={{ cartItems, favorites, items, isItemAdded, setCartOpened }}>
+    <AppContext.Provider value={{ cartItems, favorites, items, isItemAdded, setCartOpened, setCartItems }}>
     <div className="wrapper clear">
       {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} />}
 
@@ -120,6 +128,6 @@ function App() {
     </div>
     </AppContext.Provider>
   );
-}
+};
 
 export default App;

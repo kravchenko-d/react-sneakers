@@ -8,7 +8,6 @@ const Info = ({ title, image, description }) => {
         <div className="cartEmpty" style={{flex: '1', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}} >
             <img
                 width={120}
-                height={120}
                 src={image}
                 alt="Empty cart"
                 style={{marginBottom: '20px'}}
@@ -20,7 +19,7 @@ const Info = ({ title, image, description }) => {
                 Вернуться назад
             </button>
         </div>
-    )
-}
+    );
+};
 
 export default Info;
