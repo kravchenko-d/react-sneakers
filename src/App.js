@@ -51,12 +51,6 @@ function App() {
       setCartItems(cartResponse.data);
       setItems(itemsResponse.data);
     }
-    // axios.get('https://66b232d61ca8ad33d4f6ec4b.mockapi.io/items').then(res => {
-    // setItems(res.data);
-    // });
-    // axios.get('https://66b232d61ca8ad33d4f6ec4b.mockapi.io/cart').then(res => {
-    // setCartItems(res.data);
-    // });
     fetchData();
   }, []);
 
@@ -70,7 +64,6 @@ function App() {
       await axios.get('https://66b232d61ca8ad33d4f6ec4b.mockapi.io/cart').then(res => {
       setCartItems(res.data);
       });
-      // setCartItems(prev => [...prev, obj]);
     }
   };
 
@@ -81,11 +74,6 @@ function App() {
       setFavorites(prev => [...prev, obj]);
     }    
   };
-
-  // const onRemoveItem = (id) => {
-  //   axios.delete(`https://66b232d61ca8ad33d4f6ec4b.mockapi.io/cart/${id}`); //сюда должен попадать cart_id
-  //   setCartItems(prev => prev.filter(item => item.id !== id));
-  // }
 
   const onRemoveItem = (obj) => {
     const cartItem = cartItems.find((item) => Number(item.id) === Number(obj.id))
@@ -98,7 +86,7 @@ function App() {
   };
 
   return (
-    <AppContext.Provider value={{ cartItems, favorites, items, isItemAdded }}>
+    <AppContext.Provider value={{ cartItems, favorites, items, isItemAdded, setCartOpened }}>
     <div className="wrapper clear">
       {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} />}
 
@@ -123,7 +111,6 @@ function App() {
           />
           <Route path="/favorites"
             element={<Favorites
-              // items={favorites} не нужно, т.к. есть контекст
               onAddToFavorite={onAddToFavorite}
               onAddToCart={onAddToCart}
             />}

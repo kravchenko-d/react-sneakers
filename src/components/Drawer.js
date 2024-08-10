@@ -1,3 +1,5 @@
+import Info from '../components/Info'
+
 const Drawer = ({ onClose, onRemove, items = [] }) => {
     return (
         <div className="overlay">
@@ -41,15 +43,11 @@ const Drawer = ({ onClose, onRemove, items = [] }) => {
                             </button>                        
                         </div>
                     </>
-                    ) : <div className="cartEmpty" style={{flex: '1', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}} >
-                        <img width={120} height={120} src="/img/empty-cart.jpg" alt="Empty cart" style={{marginBottom: '20px'}} />
-                        <h2>Корзина пуста</h2>
-                        <p style={{opacity: '0.6'}}>Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.</p>
-                        <button onClick={onClose} className="greenButton">
-                            <img src="/img/arrow.svg" alt="Arrow" />
-                            Вернуться назад
-                        </button>
-                    </div>
+                    ) : <Info
+                            title="Корзина пуста"
+                            description="Добавьте хотя бы одну пару кроссовок, чтобы оформить заказ."
+                            image="/img/empty-cart.jpg"
+                        />
                 }
 
             </aside>
