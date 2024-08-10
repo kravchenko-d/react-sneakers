@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { Route, Routes } from 'react-router-dom';
 import Drawer from "./components/Drawer";
 import Header from "./components/Header";
@@ -20,6 +20,8 @@ import Favorites from "./pages/Favorites";
 //   {name: 'Кроссовки Puma X Aka Boku Future Rider', price: 8999, imageUrl: '/img/sneakers/1.jpg'},
 //   {name: 'Мужские Кроссовки Nike Kyrie Flytrap IV', price: 11299, imageUrl: '/img/sneakers/6.jpg'},
 // ];
+
+export const AppContext = createContext({});
 
 function App() {
 
@@ -88,36 +90,38 @@ function App() {
   }
 
   return (
+    <AppContext.Provider value={{ cartItems, favorites, items }}>
     <div className="wrapper clear">
       {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} />}
 
       <Header onClickCart={() => setCartOpened(true)} cartItems={cartItems} />
-
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Home
-              items={items}
-              cartItems={cartItems}
-              searchValue={searchValue}
-              setSearchValue={setSearchValue}
-              onChangeSearchInput={onChangeSearchInput}
+      
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+                items={items}
+                cartItems={cartItems}
+                searchValue={searchValue}
+                setSearchValue={setSearchValue}
+                onChangeSearchInput={onChangeSearchInput}
+                onAddToFavorite={onAddToFavorite}
+                onAddToCart={onAddToCart}
+                isLoading={isLoading}
+              />
+            }
+          />
+          <Route path="/favorites"
+            element={<Favorites
+              // items={favorites} не нужно, т.к. есть контекст
               onAddToFavorite={onAddToFavorite}
-              onAddToCart={onAddToCart}
-              isLoading={isLoading}
-            />
-          }
-        />
-        <Route path="/favorites"
-          element={<Favorites
-            items={favorites}
-            onAddToFavorite={onAddToFavorite}
-          />}
-        />
-      </Routes>
+            />}
+          />
+        </Routes>
 
     </div>
+    </AppContext.Provider>
   );
 }
 

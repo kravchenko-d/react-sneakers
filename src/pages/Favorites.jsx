@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import Card from "../components/Card"
+import { AppContext } from "../App";
 
-const Favorites = ( { items, onAddToFavorite } ) => {
+const Favorites = ( { onAddToFavorite } ) => {
+    const state = useContext(AppContext);
+
     return (
         <div className="content">
             <div style={{display: 'flex', alignItems: 'center', marginBottom:'40px', justifyContent: 'space-between'}}>
@@ -8,15 +12,12 @@ const Favorites = ( { items, onAddToFavorite } ) => {
             </div>
 
             <div>
-                {items
-                    .map((item, id) =>
+                {state.favorites.map((item, index) =>
                     <Card
-                        key={id}
-                        name={item.name}
-                        price={item.price}
-                        imageUrl={item.imageUrl}
+                        key={index}
                         favorited={true}
-                        onAddToFavorite={onAddToFavorite}
+                        onFavorite={onAddToFavorite}
+                        {...item}
                     />)}
                 </div>
         </div>
