@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { useCart } from '../hooks/useCart';
 
 const Header = ({ onClickCart, cartItems }) =>  {
+    const { totalPrice } = useCart();
     return(
         <header>
         <Link to="/">
@@ -18,7 +20,7 @@ const Header = ({ onClickCart, cartItems }) =>  {
 
                 <li onClick={onClickCart} style={{cursor: 'pointer'}}>
                     <img width={18} height={18} src="/img/cart.svg" alt="Корзина" style={{marginRight:'20px'}} />
-                    <span>{cartItems.reduce((acc, item) => acc + item.price, 0)} руб.</span>
+                    <span>{totalPrice} руб.</span>
                 </li>
                 <li style={{cursor: 'pointer'}}>
                     <Link to="/favorites">

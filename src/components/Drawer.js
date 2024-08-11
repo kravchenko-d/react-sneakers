@@ -2,9 +2,10 @@ import { useContext, useState } from 'react';
 import Info from '../components/Info';
 import { AppContext } from '../App';
 import axios from 'axios';
+import { useCart } from '../hooks/useCart';
 
 const Drawer = ({ onClose, onRemove, items = [] }) => {
-    const { cartItems, setCartItems } = useContext(AppContext);
+    const { cartItems, setCartItems, totalPrice } = useCart();
     const [orderId, setOrderId] = useState(null);
     const [isOrderComplete, setIsOrderComplete] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -51,12 +52,12 @@ const Drawer = ({ onClose, onRemove, items = [] }) => {
                             <li>
                                 <span>Итого:</span>
                                 <div style={{flex: '1', height: '1px', borderBottom: '1px dashed #dfdfdf'}}></div>
-                                <b>{items.reduce((acc, item) => acc + item.price, 0)} руб.</b>
+                                <b>{totalPrice} руб.</b>
                             </li>
                             <li>
                                 <span>Налог 20%</span>
                                 <div></div>
-                                <b>{Math.round(items.reduce((acc, item) => acc + item.price*0.2, 0)*100)/100} руб.</b>
+                                <b>{Math.round(totalPrice*0.2*100)/100} руб.</b>
                             </li>
                             </ul>
                             <button disabled={isLoading} onClick={onClickOrder} className="greenButton">Оформить заказ
