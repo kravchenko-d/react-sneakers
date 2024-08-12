@@ -43,11 +43,11 @@ const Card = ({ id,
         </ContentLoader> : <>
         {onFavorite && 
             <div className={styles.favorite} style={{position: 'absolute', cursor: 'pointer'}} onClick={onClickFavorite}>
-            <img src={isFavorite ? "/img/heart-liked.svg" : "/img/heart-unliked.svg"} alt="Unliked" />
+            <img src={isFavorite ? process.env.PUBLIC_URL + "/img/heart-liked.svg" : process.env.PUBLIC_URL + "/img/heart-unliked.svg"} alt="Unliked" />
             </div>
         }        
     
-        <img width={133} height={112} src={imageUrl} alt="Sneakers"/>
+        <img width={133} height={112} src={process.env.PUBLIC_URL + imageUrl} alt="Sneakers"/>
     
         <h5>{name}</h5>
     
@@ -58,7 +58,7 @@ const Card = ({ id,
             </div>
             {onPlus && <img
                 onClick={onClickPlus}
-                src={isItemAdded(id) ? "/img/btn-checked.svg" : "/img/plus.svg"}
+                src={isItemAdded(id) ? process.env.PUBLIC_URL + "/img/btn-checked.svg" : process.env.PUBLIC_URL + "/img/plus.svg"}
                 alt="Plus"
                 style={{cursor: 'pointer'}}
             />}            

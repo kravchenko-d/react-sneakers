@@ -15,7 +15,7 @@ const Info = ({ title, image, description }) => {
             <h2>{title}</h2>
             <p style={{opacity: '0.6'}}>{description}</p>
             <button onClick={() => setCartOpened(false)} className="greenButton">
-                <img src="/img/arrow.svg" alt="Arrow" />
+                <img src={process.env.PUBLIC_URL + "/img/arrow.svg"} alt="Arrow" />
                 Вернуться назад
             </button>
         </div>

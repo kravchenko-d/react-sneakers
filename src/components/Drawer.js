@@ -27,7 +27,7 @@ const Drawer = ({ onClose, onRemove, items = [] }) => {
         <div className="overlay">
             <aside style={{padding: '30px', display: 'flex', flexDirection: 'column'}}>
                 <h2 style={{margin: '0', display: 'flex', justifyContent: 'space-between'}}>Корзина
-                    <img className="removeBtn" src="/img/btn-remove.svg" alt="Close" onClick={onClose} style={{cursor: 'pointer'}}/>
+                    <img className="removeBtn" src={process.env.PUBLIC_URL + "/img/btn-remove.svg"} alt="Close" onClick={onClose} style={{cursor: 'pointer'}}/>
                 </h2>
 
                 {
@@ -37,13 +37,13 @@ const Drawer = ({ onClose, onRemove, items = [] }) => {
                         {items.map((obj) => (
                             <div key={obj.id} className="cartItem" style={{display: 'flex', alignItems: 'center', fontSize: '16px', padding: '20px'}}>
                                 <div className="cartItemImg">
-                                    <img width={70} height={70} src={obj.imageUrl} alt="Sneakers" style={{marginRight: '20px'}} />
+                                    <img width={70} height={70} src={process.env.PUBLIC_URL + obj.imageUrl} alt="Sneakers" style={{marginRight: '20px'}} />
                                 </div>
                                 <div style={{marginRight: '20px'}}>
                                     <p style={{margin: '0'}}>{obj.name}</p>
                                     <b style={{fontSize: '14px'}}>{obj.price} руб.</b>
                                 </div>
-                                <img onClick={() => onRemove(obj)} className="removeBtn" src="/img/btn-remove.svg" alt="Remove"/>
+                                <img onClick={() => onRemove(obj)} className="removeBtn" src={process.env.PUBLIC_URL + "/img/btn-remove.svg"} alt="Remove"/>
                         </div>
                         ))}
                         </div>
@@ -61,14 +61,14 @@ const Drawer = ({ onClose, onRemove, items = [] }) => {
                             </li>
                             </ul>
                             <button onClick={onClickOrder} className="greenButton">Оформить заказ
-                            <img src="/img/arrow.svg" alt="Arrow"/>
+                            <img src={process.env.PUBLIC_URL + "/img/arrow.svg"} alt="Arrow"/>
                             </button>
                         </div>
                     </>
                     ) : <Info
                             title={isOrderComplete ? "Заказ оформлен!" : "Корзина пуста"}
                             description={isOrderComplete ? `Ваш заказ № ${orderId} скоро будет передан курьерской службе` : "Добавьте хотя бы одну пару кроссовок, чтобы оформить заказ."}
-                            image={isOrderComplete ? "/img/complete-order.jpg" : "/img/empty-cart.jpg"}
+                            image={isOrderComplete ? process.env.PUBLIC_URL + "/img/complete-order.jpg" : process.env.PUBLIC_URL + "/img/empty-cart.jpg"}
                         />
                 }
 

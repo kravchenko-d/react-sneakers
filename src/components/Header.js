@@ -5,7 +5,7 @@ const Header = ({ onClickCart, cartItems }) =>  {
     const { totalPrice } = useCart();
     return(
         <header>
-        <Link to='/'>
+        <Link to={process.env.PUBLIC_URL + '/'}>
             <div className="headerLeft">
                 
                     <img width={40} height={40} src={process.env.PUBLIC_URL + "/img/logo.png"} alt="Logo" />
@@ -19,18 +19,18 @@ const Header = ({ onClickCart, cartItems }) =>  {
             <ul>
 
                 <li onClick={onClickCart} style={{cursor: 'pointer'}}>
-                    <img width={18} height={18} src="/img/cart.svg" alt="Корзина" style={{marginRight:'20px'}} />
+                    <img width={18} height={18} src={process.env.PUBLIC_URL + "/img/cart.svg"} alt="Корзина" style={{marginRight:'20px'}} />
                     <span>{totalPrice} руб.</span>
                 </li>
                 <li style={{cursor: 'pointer'}}>
-                    <Link to='/favorites'>
-                        <img width={18} height={18} src="/img/heart.svg" alt="Закладки" />
+                    <Link to={process.env.PUBLIC_URL + '/favorites'}>
+                        <img width={18} height={18} src={process.env.PUBLIC_URL + "/img/heart.svg"} alt="Закладки" />
                         <span style={{margin: '0 16px 0 8px'}}>Закладки</span>
                     </Link>                    
                 </li>
                 <li style={{cursor: 'pointer'}}>
-                    <Link to="/orders">
-                        <img width={18} height={18} src="/img/user.svg" alt="Пользователь" />
+                    <Link to={process.env.PUBLIC_URL + "/orders"}>
+                        <img width={18} height={18} src={process.env.PUBLIC_URL + "/img/user.svg"} alt="Пользователь" />
                         <span style={{marginLeft: '8px'}}>Профиль</span>
                     </Link> 
                 </li>
