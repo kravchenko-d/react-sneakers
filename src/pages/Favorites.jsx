@@ -13,7 +13,7 @@ const Favorites = ( { onAddToFavorite, onAddToCart } ) => {
             <div>
                 {state.favorites.map((item, index) =>
                     <Card
-                        key={item.id} // когда вместо item.id стоял index, то при удалении одного из нескольких товаров в избранном пропадало сердечко на следующем от удаленного
+                        key={item.id}
                         favorited={true}
                         onFavorite={onAddToFavorite}
                         onPlus={onAddToCart}
