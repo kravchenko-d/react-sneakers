@@ -1,5 +1,7 @@
 # React Sneakers
 
+https://kravchenko-d.github.io/react-sneakers/
+
 ![App](/screenshots/screenshot-1.jpg)
 ![Empty cart](/screenshots/screenshot-2.jpg)
 ![Orders](/screenshots/screenshot-3.jpg)
