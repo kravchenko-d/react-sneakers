@@ -94,7 +94,7 @@ function App() {
         <Routes>
 
           <Route
-            path="/react-sneakers/"
+            path={process.env.PUBLIC_URL +"/"}
             element={
               <Home
                 items={items}
@@ -110,14 +110,14 @@ function App() {
             }
           />
 
-          <Route path="/react-sneakers/favorites"
+          <Route path={process.env.PUBLIC_URL +"/favorites"}
             element={<Favorites
               onAddToFavorite={onAddToFavorite}
               onAddToCart={onAddToCart}
             />}
           />
 
-          <Route path="/react-sneakers/orders"
+          <Route path={process.env.PUBLIC_URL +"/orders"}
             element={<Orders />}
           />
 
