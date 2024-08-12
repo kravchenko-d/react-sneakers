@@ -1,8 +1,8 @@
 # React Sneakers
 
-![App](/screenshots/screenshot_1.jpg)
-![Empty cart](/screenshots/screenshot_2.jpg)
-![Orders](/screenshots/screenshot_3.jpg)
-![Favorites](/screenshots/screenshot_4.jpg)
-![Cart items](/screenshots/screenshot_5.jpg)
-![Order success](/screenshots/screenshot_6.jpg)
+![App](/screenshots/screenshot-1.jpg)
+![Empty cart](/screenshots/screenshot-2.jpg)
+![Orders](/screenshots/screenshot-3.jpg)
+![Favorites](/screenshots/screenshot-4.jpg)
+![Cart items](/screenshots/screenshot-5.jpg)
+![Order success](/screenshots/screenshot-6.jpg)
