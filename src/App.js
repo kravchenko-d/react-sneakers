@@ -5,6 +5,7 @@ import Drawer from "./components/Drawer";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
+import Orders from "./pages/Orders";
 
 // const arr = [
 //   {name: 'Мужские Кроссовки Nike Blazer Mid Suede', price: 12999, imageUrl: '/img/sneakers/1.jpg'},
@@ -101,6 +102,7 @@ function App() {
       <Header onClickCart={() => setCartOpened(true)} cartItems={cartItems} />
       
         <Routes>
+
           <Route
             path="/"
             element={
@@ -117,12 +119,18 @@ function App() {
               />
             }
           />
+
           <Route path="/favorites"
             element={<Favorites
               onAddToFavorite={onAddToFavorite}
               onAddToCart={onAddToCart}
             />}
           />
+
+          <Route path="/orders"
+            element={<Orders />}
+          />
+
         </Routes>
 
     </div>

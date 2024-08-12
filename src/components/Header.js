@@ -24,11 +24,15 @@ const Header = ({ onClickCart, cartItems }) =>  {
                 </li>
                 <li style={{cursor: 'pointer'}}>
                     <Link to="/favorites">
-                        <img width={18} height={18} src="/img/heart.svg" alt="Закладки" style={{marginRight:'20px'}} />
+                        <img width={18} height={18} src="/img/heart.svg" alt="Закладки" />
+                        <span style={{margin: '0 16px 0 8px'}}>Закладки</span>
                     </Link>                    
                 </li>
-                <li>
-                    <img width={18} height={18} src="/img/user.svg" alt="Пользователь" />
+                <li style={{cursor: 'pointer'}}>
+                    <Link to="/orders">
+                        <img width={18} height={18} src="/img/user.svg" alt="Пользователь" />
+                        <span style={{marginLeft: '8px'}}>Профиль</span>
+                    </Link> 
                 </li>
 
             </ul>
