@@ -5,7 +5,7 @@ const Header = ({ onClickCart, cartItems }) =>  {
     const { totalPrice } = useCart();
     return(
         <header>
-        <Link to={process.env.PUBLIC_URL + '/'}>
+        <Link to='/'>
             <div className="headerLeft">
                 
                     <img width={40} height={40} src="/img/logo.png" alt="Logo"/>
@@ -23,7 +23,7 @@ const Header = ({ onClickCart, cartItems }) =>  {
                     <span>{totalPrice} руб.</span>
                 </li>
                 <li style={{cursor: 'pointer'}}>
-                    <Link to={process.env.PUBLIC_URL + '/favorites'}>
+                    <Link to='/favorites'>
                         <img width={18} height={18} src="/img/heart.svg" alt="Закладки" />
                         <span style={{margin: '0 16px 0 8px'}}>Закладки</span>
                     </Link>                    

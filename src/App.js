@@ -94,7 +94,7 @@ function App() {
         <Routes>
 
           <Route
-            path={process.env.PUBLIC_URL + '/'}
+            path='/'
             element={
               <Home
                 items={items}
@@ -110,14 +110,14 @@ function App() {
             }
           />
 
-          <Route path={process.env.PUBLIC_URL +"/favorites"}
+          <Route path="/favorites"
             element={<Favorites
               onAddToFavorite={onAddToFavorite}
               onAddToCart={onAddToCart}
             />}
           />
 
-          <Route path={process.env.PUBLIC_URL +"/orders"}
+          <Route path="/orders"
             element={<Orders />}
           />
 
