@@ -41,9 +41,11 @@ const Card = ({ id,
             <rect x="0" y="153" rx="10" ry="10" width="80" height="25" /> 
             <rect x="124" y="146" rx="10" ry="10" width="32" height="32" />
         </ContentLoader> : <>
-        <div className={styles.favorite} style={{position: 'absolute', cursor: 'pointer'}} onClick={onClickFavorite}>
+        {onFavorite && 
+            <div className={styles.favorite} style={{position: 'absolute', cursor: 'pointer'}} onClick={onClickFavorite}>
             <img src={isFavorite ? "/img/heart-liked.svg" : "/img/heart-unliked.svg"} alt="Unliked" />
-        </div>
+            </div>
+        }        
     
         <img width={133} height={112} src={imageUrl} alt="Sneakers"/>
     
@@ -54,8 +56,12 @@ const Card = ({ id,
                 <span>Цена: </span>
                 <b>{price} руб.</b>
             </div>
-
-            <img onClick={onClickPlus} src={isItemAdded(id) ? "/img/btn-checked.svg" : "/img/plus.svg"} alt="Plus" style={{cursor: 'pointer'}}/>
+            {onPlus && <img
+                onClick={onClickPlus}
+                src={isItemAdded(id) ? "/img/btn-checked.svg" : "/img/plus.svg"}
+                alt="Plus"
+                style={{cursor: 'pointer'}}
+            />}            
         </div>
         </>
         }    
