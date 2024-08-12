@@ -8,7 +8,7 @@ const Header = ({ onClickCart, cartItems }) =>  {
         <Link to='/'>
             <div className="headerLeft">
                 
-                    <img width={40} height={40} src="/img/logo.png" alt="Logo"/>
+                    <img width={40} height={40} src={process.env.PUBLIC_URL + "/img/logo.png"} alt="Logo" />
 
                     <div className="headerInfo">
                         <h3>React Sneakers</h3>
